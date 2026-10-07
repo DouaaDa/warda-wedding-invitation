@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* === Envelope screen palette (spec) === */
+  --color-burgundy:   #6B0F2A;
+  --color-wine:       #4A0A1C;
+  --color-ivory:      #F6EFE6;
+  --color-blush-from: #EFE4E1;
+  --color-blush-to:   #F3E9E2;
+  --color-gold:       #B8975A;
+
+  /* === Legacy palette (used by invitation cards) === */
+  --color-primary:    #7A263D;
+  --color-secondary:  #5A0F24;
+  --color-tertiary:   #3B0717;
+  --color-pearl:      #FBF7F0;
+  --color-soft-grey:  #6B5146;
+
+  /* === Fonts === */
+  --font-script:      'Great Vibes', 'Pinyon Script', cursive;
+  --font-pinyon:      'Pinyon Script', cursive;
+  --font-cormorant:   'Cormorant Garamond', serif;
+  --font-montserrat:  'Montserrat', sans-serif;
+  --font-serif:       'Playfair Display', serif;
+  --font-sans:        'Montserrat', 'Inter', sans-serif;
+  --font-arabic:      'Amiri', serif;
+}
+
+@layer base {
+  /* ── RESPONSIVE FOUNDATIONS ── */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* Prevent iOS bounce on scroll for cleaner feel */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    /* Soft blush gradient — the envelope intro screen background */
+    background-color: #EFE4E1;
+    background-image: linear-gradient(160deg, #EFE4E1 0%, #F3E9E2 100%);
+    color: var(--color-soft-grey);
+    font-family: var(--font-montserrat);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    /* Support safe-area-inset for notched phones */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Remove tap highlight for premium native feel on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  /* Gold-tinted text selection */
+  ::selection {
+    background: rgba(184, 151, 90, 0.25);
+    color: inherit;
+  }
+
+  /* Respect reduced motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Prevent images from overflowing on any viewport */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .text-shadow-elegant {
+    text-shadow: 0 1px 2px rgba(201, 166, 107, 0.2);
+  }
+  
+  .embossed-text {
+    color: var(--color-gold);
+    text-shadow: 
+      -1px -1px 1px rgba(255,255,255,0.3),
+      1px 1px 2px rgba(0,0,0,0.4);
+  }
+
+  .letterpress-text {
+    color: var(--color-tertiary);
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+  }
+
+  /* Physical Paper Textures */
+  .paper-ivory {
+    background-color: var(--color-ivory);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    box-shadow: 
+      inset 0 0 40px rgba(90, 15, 36, 0.05),
+      inset 1px 1px 2px rgba(255,255,255,0.9),
+      0 8px 24px rgba(59, 7, 23, 0.2),
+      0 20px 50px rgba(59, 7, 23, 0.3);
+  }
+
+  .paper-pearl {
+    background-color: var(--color-pearl);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    box-shadow: 
+      inset 0 0 40px rgba(90, 15, 36, 0.04),
+      inset 1px 1px 2px rgba(255,255,255,0.9),
+      0 8px 24px rgba(59, 7, 23, 0.25),
+      0 18px 50px rgba(59, 7, 23, 0.25);
+  }
+
+  .paper-burgundy {
+    background-color: var(--color-secondary);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+    box-shadow: 
+      inset 0 0 60px rgba(59, 7, 23, 0.8),
+      inset 1px 1px 2px rgba(255,255,255,0.15),
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .physical-edge {
+    box-shadow: 
+      inset 1px 1px 2px rgba(255,255,255,0.9),
+      inset -1px -1px 2px rgba(0,0,0,0.04),
+      0 4px 8px rgba(59, 7, 23, 0.2),
+      0 12px 28px rgba(59, 7, 23, 0.25),
+      0 24px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .gold-foil-border {
+    border: 1px solid rgba(201, 168, 106, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 106, 0.2);
+  }
+}
