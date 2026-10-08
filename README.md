@@ -1,4 +1,4 @@
-# 💍 Warda & Yasser — Luxury Wedding Invitation
+Luxury Wedding Invitation
 
 A premium interactive digital wedding invitation designed for **Warda & Yasser**, combining elegant editorial design, cinematic transitions, multilingual content, and a responsive experience across mobile, tablet, and desktop.
 
