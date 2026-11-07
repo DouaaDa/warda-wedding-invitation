@@ -51,12 +51,21 @@ export default function RealisticEnvelope({ onOpen }) {
           ease: 'easeInOut',
         }}
       >
-        <img
-          src="/envelope_floral_luxury.jpg"
-          alt="Invitation de mariage Yasser & Warda Azeri"
-          className="block w-full h-full object-cover object-center pointer-events-none"
-          draggable="false"
-        />
+        <picture className="block w-full h-full">
+          {/* Image téléphone */}
+          <source
+            media="(max-width: 767px)"
+            srcSet="/envelope-mobile.webp"
+          />
+
+          {/* Image ordinateur */}
+          <img
+            src="/envelope_floral_luxury.jpg"
+            alt="Invitation de mariage Yasser & Warda Azeri"
+            className="block w-full h-full object-cover object-center pointer-events-none"
+            draggable="false"
+          />
+        </picture>
       </motion.div>
     </motion.div>
   );
