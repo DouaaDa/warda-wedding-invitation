@@ -24,7 +24,7 @@ export default function WeddingEnvelope({ onOpen }) {
       } : { opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={!isOpening ? { duration: 1.2, ease: [0.16, 1, 0.3, 1] } : undefined}
-      className="fixed inset-0 flex flex-col items-center justify-center p-4 md:p-8 bg-[#1a0f14] z-50 overflow-hidden"
+      className="fixed inset-0 flex flex-col items-center justify-center p-4 md:p-8 bg-[#F8F3EC] z-50 overflow-hidden"
     >
       {/* Cinematic warm light */}
       <motion.div 

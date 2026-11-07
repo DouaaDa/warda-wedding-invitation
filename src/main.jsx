@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import GuestNotes from './components/GuestNotes.jsx'
 import AdminLayout from './admin/AdminLayout.jsx'
 import Login from './admin/Login.jsx'
 import Dashboard from './admin/Dashboard.jsx'
@@ -29,6 +30,9 @@ async function init() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/notes" element={<GuestNotes />} />
+          <Route path="/remarques" element={<GuestNotes />} />
+          <Route path="/guest-notes" element={<GuestNotes />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />

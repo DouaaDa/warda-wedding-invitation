@@ -19,6 +19,7 @@ export default function FloatingNavigation() {
     { name: 'Le Jour', href: '#' },
     { name: 'Les Souvenirs', href: '#' },
     { name: 'Répondre', href: '#' },
+    { name: 'Remarques', href: '/notes' },
   ];
 
   return (
@@ -38,7 +39,12 @@ export default function FloatingNavigation() {
           {links.map((link) => (
             <button
               key={link.name}
-              className="text-[10px] uppercase tracking-[0.3em] text-soft-grey hover:text-gold transition-colors font-sans"
+              onClick={() => {
+                if (link.href.startsWith('/')) {
+                  window.location.href = link.href;
+                }
+              }}
+              className="text-[10px] uppercase tracking-[0.3em] text-soft-grey hover:text-gold transition-colors font-sans cursor-pointer"
             >
               {link.name}
             </button>
@@ -89,8 +95,13 @@ export default function FloatingNavigation() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    onClick={() => setIsOpen(false)}
-                    className="font-cormorant text-2xl text-soft-grey hover:text-gold italic transition-colors w-full text-center border-b border-gold/10 pb-4 last:border-0"
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (link.href.startsWith('/')) {
+                        window.location.href = link.href;
+                      }
+                    }}
+                    className="font-cormorant text-2xl text-soft-grey hover:text-gold italic transition-colors w-full text-center border-b border-gold/10 pb-4 last:border-0 cursor-pointer"
                   >
                     {link.name}
                   </motion.button>

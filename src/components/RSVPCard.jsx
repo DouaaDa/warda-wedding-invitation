@@ -10,7 +10,7 @@ export default function RSVPCard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Attempt to save to Supabase if connected
     if (supabase) {
       try {
@@ -24,7 +24,7 @@ export default function RSVPCard() {
         console.warn('Supabase RSVP insert failed', err);
       }
     }
-    
+
     setIsSubmitting(false);
     setStatus('submitted');
   };
@@ -142,8 +142,8 @@ export default function RSVPCard() {
                 Merci ♡
               </h3>
               <p className="font-serif text-xl text-secondary/90 italic max-w-sm">
-                {formData.attending !== false 
-                  ? "Votre présence est bien enregistrée." 
+                {formData.attending !== false
+                  ? "Votre présence est bien enregistrée."
                   : "Nous regrettons votre absence, mais vous serez dans nos cœurs."}
               </p>
             </motion.div>
