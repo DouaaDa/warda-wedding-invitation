@@ -5,7 +5,7 @@
  * The single cinematic experience that appears after the envelope is opened.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { wedding } from '../config';
@@ -72,6 +72,74 @@ function GoldLabel({ children, className = '', style = {} }) {
     >
       {children}
     </p>
+  );
+}
+function WeddingMusicButton() {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Music playback failed:', error);
+        setIsPlaying(false);
+      }
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        src="/wedding-song.mp3"
+        preload="metadata"
+        onEnded={() => setIsPlaying(false)}
+      />
+
+      <motion.button
+        type="button"
+        onClick={toggleMusic}
+        aria-label={isPlaying ? 'Pause music' : 'Play music'}
+        title={isPlaying ? 'Pause music' : 'Play music'}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed z-[100] flex items-center justify-center gap-2 rounded-full"
+        style={{
+          right: 'clamp(16px, 4vw, 28px)',
+          bottom: 'clamp(18px, 4vw, 30px)',
+          padding: '0 20px',
+          height: '48px',
+          color: '#FFFDF9',
+          background: 'linear-gradient(145deg, #67163E, #3E0F33)',
+          border: '1px solid rgba(197, 160, 89, 0.8)',
+          boxShadow: '0 5px 22px rgba(62, 15, 51, 0.25)',
+          cursor: 'pointer',
+        }}
+      >
+        <span style={{ color: '#DFC285', fontSize: '17px' }}>♫</span>
+
+        <span style={{
+          fontSize: '11px',
+          letterSpacing: '0.12em',
+          fontWeight: 500,
+        }}>
+          Musique
+        </span>
+
+        <span style={{ color: '#DFC285', fontSize: '13px' }}>
+          {isPlaying ? 'Ⅱ' : '▶'}
+        </span>
+      </motion.button>
+    </>
   );
 }
 
@@ -1308,7 +1376,7 @@ export default function LuxuryInvitation() {
             'radial-gradient(circle at 50% 45%, rgba(255,253,249,0.9) 0%, rgba(245,229,228,0.6) 35%, rgba(217,166,174,0.3) 65%, #F8F3EC 100%)',
         }}
       />
-
+      <WeddingMusicButton />
       <HennaDayExperience cfg={cfg} />
       <GuestNotesSection />
       <RSVP />
